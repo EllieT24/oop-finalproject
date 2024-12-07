@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class listGUI extends JFrame {
 
@@ -76,6 +78,17 @@ public class listGUI extends JFrame {
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.setBounds(327, 237, 117, 29);
 		getContentPane().add(btnNewButton);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String title = txtEnterTitleHere.getText();
+				String description = txtEnterDescriptions.getText();
+				String tasks = txtSeperateTasksBy.getText();
+				
+				List list = new List(title, description, tasks);
+				System.exit(ABORT);
+			}
+		});
 
 	}
 }

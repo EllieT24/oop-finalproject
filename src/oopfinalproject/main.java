@@ -1,6 +1,7 @@
 package oopfinalproject;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,12 +18,14 @@ import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
+import java.util.*;
 
 public class main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtSearchForA;
+	static private Vector<List> list = new Vector<>();
 
 	/**
 	 * Launch the application.
