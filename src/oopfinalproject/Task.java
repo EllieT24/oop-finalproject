@@ -1,5 +1,5 @@
 package oopfinalproject;
 
-public class maingui {
+public class Task {
 
 }
