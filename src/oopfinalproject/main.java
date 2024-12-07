@@ -16,7 +16,6 @@ public class main extends JFrame {
     private DefaultListModel<String> listModel;
     private ArrayList<ToDoList> todoLists; // Store the list of ToDoList objects
 
-    // Main method to run the application
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -30,7 +29,6 @@ public class main extends JFrame {
         });
     }
 
-    // Constructor to create the frame and initialize components
     public main() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -40,56 +38,46 @@ public class main extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // Create the search bar and button
-        JButton btnNewButton = new JButton("Search");
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchList(txtSearchForA.getText());
-            }
-        });
-        btnNewButton.setBounds(252, 6, 117, 29);
-        contentPane.add(btnNewButton);
+        JLabel lblSearch = new JLabel("Search");
+        lblSearch.setBounds(49, 6, 60, 20);
+        contentPane.add(lblSearch);
 
         txtSearchForA = new JTextField();
         txtSearchForA.setForeground(SystemColor.inactiveCaptionText);
-        txtSearchForA.setText("Search for a list");
-        txtSearchForA.setBounds(49, 6, 191, 26);
+        txtSearchForA.setText("");
+        txtSearchForA.setBounds(115, 6, 191, 26);
         contentPane.add(txtSearchForA);
         txtSearchForA.setColumns(10);
 
-        // Create the panel to hold the list of to-do lists
+        txtSearchForA.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                searchList(txtSearchForA.getText());
+            }
+        });
+
         JPanel list_box = new JPanel();
         list_box.setBounds(50, 47, 267, 219);
         contentPane.add(list_box);
 
-        // Set up the JList with DefaultListModel
         listModel = new DefaultListModel<>();
         list = new JList<>(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    showToDoListDetails(list.getSelectedIndex());
-                }
-            }
-        });
+        
 
         JScrollPane scrollPane = new JScrollPane(list);
         list_box.setLayout(new BorderLayout());
         list_box.add(scrollPane, BorderLayout.CENTER);
 
-        // Button to add a new to-do list
         JButton addListBtn = new JButton("Add New List");
         addListBtn.setBounds(327, 47, 117, 29);
         contentPane.add(addListBtn);
 
         addListBtn.addActionListener(e -> {
-            // Open the list creation window
             ToDoListGUI listFrame = new ToDoListGUI(this);
             listFrame.setVisible(true);
         });
 
-        // Button to delete the selected to-do list
         JButton deleteListBtn = new JButton("Delete");
         deleteListBtn.setBounds(327, 83, 117, 29);
         contentPane.add(deleteListBtn);
@@ -99,11 +87,9 @@ public class main extends JFrame {
             }
         });
 
-        // Load data from file when application starts
         loadDataFromFile();
     }
 
-    // Method to load to-do lists from a file
     private void loadDataFromFile() {
         todoLists = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("todoList.txt"))) {
@@ -111,7 +97,7 @@ public class main extends JFrame {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.startsWith("[") && line.endsWith("]")) {
-                    line = line.substring(1, line.length() - 1);  // Remove outer brackets
+                    line = line.substring(1, line.length() - 1);
                     String[] parts = line.split(", ", 3);
                     String title = parts[0].trim();
                     String description = parts[1].trim();
@@ -127,32 +113,29 @@ public class main extends JFrame {
         }
     }
 
-    // Method to add a new to-do list and update the JList
     public void addToDoList(ToDoList newList) {
-        todoLists.add(newList);  // Add the new list to the internal list
-        listModel.addElement(newList.getTitle());  // Update the JList model
+        todoLists.add(newList);
+        listModel.addElement(newList.getTitle());
+        updateListDisplay(); // Refresh the JList after adding
     }
 
-    // Method to display the details of the selected to-do list
-    private void showToDoListDetails(int selectedIndex) {
-        if (selectedIndex != -1) {
-            ToDoList selectedList = todoLists.get(selectedIndex);
-            JOptionPane.showMessageDialog(this, "Description: " + selectedList.getDescription());
-            // Additional functionality can be added to show tasks, mark them as complete, etc.
+    private void updateListDisplay() {
+        DefaultListModel<String> newListModel = new DefaultListModel<>();
+        for (ToDoList list : todoLists) {
+            newListModel.addElement(list.getTitle());
         }
+        list.setModel(newListModel); // Update the JList model
     }
 
-    // Method to delete the selected to-do list
     private void deleteList() {
         int selectedIndex = list.getSelectedIndex();
         if (selectedIndex != -1) {
             todoLists.remove(selectedIndex);
             listModel.remove(selectedIndex);
-            saveDataToFile();  // Save the updated list to the file
+            saveDataToFile();
         }
     }
 
-    // Method to search for a list based on the search query
     private void searchList(String query) {
         DefaultListModel<String> searchModel = new DefaultListModel<>();
         for (ToDoList toDoList : todoLists) {
@@ -160,10 +143,9 @@ public class main extends JFrame {
                 searchModel.addElement(toDoList.getTitle());
             }
         }
-        list.setModel(searchModel);  // Update the JList with search results
+        list.setModel(searchModel);
     }
 
-    // Method to save the to-do lists to the file
     private void saveDataToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt"))) {
             for (ToDoList toDoList : todoLists) {
@@ -174,3 +156,4 @@ public class main extends JFrame {
         }
     }
 }
+
