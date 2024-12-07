@@ -16,7 +16,6 @@ public class main extends JFrame {
     private DefaultListModel<String> listModel;
     private ArrayList<ToDoList> todoLists; // Store the list of ToDoList objects
 
-<<<<<<< HEAD
     // Main method to run the application
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -30,12 +29,6 @@ public class main extends JFrame {
             }
         });
     }
-=======
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtSearchForA;
-	static private Vector<List> list = new Vector<>();
->>>>>>> 4c6a1a1bdaacdf4a49ab7fd36abb8c3230184cf7
 
     // Constructor to create the frame and initialize components
     public main() {
