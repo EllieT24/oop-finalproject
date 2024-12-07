@@ -1,5 +1,6 @@
 package oopfinalproject;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,4 +71,6 @@ public class list {
         }
         return sb.toString();
     }
+=======	
+>>>>>>> 4c6a1a1bdaacdf4a49ab7fd36abb8c3230184cf7
 }
