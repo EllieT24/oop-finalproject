@@ -1,14 +1,11 @@
 package oopfinalproject;
 
-<<<<<<< HEAD
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 import java.io.*;
-=======
->>>>>>> 4c6a1a1bdaacdf4a49ab7fd36abb8c3230184cf7
 import java.util.*;
 
 public class main extends JFrame {
