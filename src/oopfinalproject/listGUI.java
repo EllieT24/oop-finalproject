@@ -22,14 +22,12 @@ public class listGUI extends JFrame {
     private main mainFrame; // Reference to main GUI frame
 
     // Constructor accepting main frame reference
-    public ToDoListGUI(main mainFrame) {
+    public listGUI(main mainFrame) {
         this.mainFrame = mainFrame; // Store the reference to main
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
-
-<<<<<<< HEAD
         JLabel lblNewLabel = new JLabel("ToDo List Title");
         lblNewLabel.setBounds(6, 0, 98, 16);
         getContentPane().add(lblNewLabel);
