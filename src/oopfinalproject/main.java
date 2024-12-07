@@ -58,29 +58,30 @@ public class main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(252, 6, 117, 29);
+		btnNewButton.setBounds(307, 9, 117, 29);
 		contentPane.add(btnNewButton);
 		
 		txtSearchForA = new JTextField();
 		txtSearchForA.setForeground(SystemColor.inactiveCaptionText);
 		txtSearchForA.setText("Search for a list");
-		txtSearchForA.setBounds(49, 6, 191, 26);
+		txtSearchForA.setBounds(28, 9, 267, 26);
 		contentPane.add(txtSearchForA);
 		txtSearchForA.setColumns(10);
 		
 		JPanel list_box = new JPanel();
-		list_box.setBounds(50, 47, 267, 219);
+		list_box.setBackground(new Color(226, 226, 246));
+		list_box.setBounds(28, 47, 267, 219);
 		contentPane.add(list_box);
 		
 		JList list = new JList();
 		list_box.add(list);
 		
 		JButton addListBtn = new JButton("Add New List");
-		addListBtn.setBounds(327, 47, 117, 29);
+		addListBtn.setBounds(307, 50, 117, 29);
 		contentPane.add(addListBtn);
 		
 		JButton deleteListBtn = new JButton("Delete");
-		deleteListBtn.setBounds(327, 83, 117, 29);
+		deleteListBtn.setBounds(307, 86, 117, 29);
 		contentPane.add(deleteListBtn);
 	}
 }
