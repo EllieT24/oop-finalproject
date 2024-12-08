@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
@@ -41,7 +42,7 @@ public class taskGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public taskGUI() {
+	public taskGUI(list selectedList) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

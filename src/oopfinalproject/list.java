@@ -70,10 +70,4 @@ public class list {
         }
         return sb.toString();
     }
-<<<<<<< HEAD
 }
-
-
-=======
-}
->>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b

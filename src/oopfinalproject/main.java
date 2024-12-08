@@ -1,7 +1,5 @@
 package oopfinalproject;
 
-package testing;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -100,6 +98,17 @@ public class main extends JFrame {
 
     private void loadDataFromFile() {
         todoLists = new ArrayList<>();
+        File file = new File("todoList.txt");
+        
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("File 'todoList.txt' not found. A new file has been created.");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return; 
+            }
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader("todoList.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
