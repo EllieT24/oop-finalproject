@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class list {
-	String title;
+    String title;
     String description;
     List<Task> tasks;
 
-    public ToDoList(String title, String description) {
+    public list(String title, String description) {
         this.title = title;
         this.description = description;
         this.tasks = new ArrayList<>();
@@ -71,3 +71,5 @@ public class list {
         return sb.toString();
     }
 }
+
+

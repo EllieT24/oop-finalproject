@@ -1,10 +1,11 @@
 package oopfinalproject;
 
+package testing;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 
@@ -14,17 +15,15 @@ public class main extends JFrame {
     private JTextField txtSearchForA;
     private JList<String> list;
     private DefaultListModel<String> listModel;
-    private ArrayList<ToDoList> todoLists; // Store the list of ToDoList objects
+    private ArrayList<list> todoLists;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    main frame = new main();
-                    frame.setVisible(true);  // Show the frame
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                main frame = new main();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -63,7 +62,20 @@ public class main extends JFrame {
         listModel = new DefaultListModel<>();
         list = new JList<>(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
+        list.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) { // Double-click to open the TaskInfoGUI
+                    int selectedIndex = list.getSelectedIndex();
+                    if (selectedIndex != -1) {
+                        list selectedList = todoLists.get(selectedIndex);
+                        taskGUI taskFrame = new taskGUI(selectedList);
+                        taskFrame.setVisible(true);
+                    }
+                }
+            }
+        });
 
         JScrollPane scrollPane = new JScrollPane(list);
         list_box.setLayout(new BorderLayout());
@@ -74,18 +86,14 @@ public class main extends JFrame {
         contentPane.add(addListBtn);
 
         addListBtn.addActionListener(e -> {
-            ToDoListGUI listFrame = new ToDoListGUI(this);
+            listGUI listFrame = new listGUI(this);
             listFrame.setVisible(true);
         });
 
         JButton deleteListBtn = new JButton("Delete");
         deleteListBtn.setBounds(327, 83, 117, 29);
         contentPane.add(deleteListBtn);
-        deleteListBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                deleteList();
-            }
-        });
+        deleteListBtn.addActionListener(e -> deleteList());
 
         loadDataFromFile();
     }
@@ -102,7 +110,7 @@ public class main extends JFrame {
                     String title = parts[0].trim();
                     String description = parts[1].trim();
                     String taskList = parts[2].trim();
-                    ToDoList toDoList = new ToDoList(title, description);
+                    list toDoList = new list(title, description);
                     toDoList.addTasks(Arrays.asList(taskList.split(", ")));
                     todoLists.add(toDoList);
                     listModel.addElement(toDoList.getTitle());
@@ -113,18 +121,18 @@ public class main extends JFrame {
         }
     }
 
-    public void addToDoList(ToDoList newList) {
+    public void addToDoList(list newList) {
         todoLists.add(newList);
         listModel.addElement(newList.getTitle());
-        updateListDisplay(); // Refresh the JList after adding
+        updateListDisplay();
     }
 
     private void updateListDisplay() {
         DefaultListModel<String> newListModel = new DefaultListModel<>();
-        for (ToDoList list : todoLists) {
+        for (list list : todoLists) {
             newListModel.addElement(list.getTitle());
         }
-        list.setModel(newListModel); // Update the JList model
+        list.setModel(newListModel);
     }
 
     private void deleteList() {
@@ -138,7 +146,7 @@ public class main extends JFrame {
 
     private void searchList(String query) {
         DefaultListModel<String> searchModel = new DefaultListModel<>();
-        for (ToDoList toDoList : todoLists) {
+        for (list toDoList : todoLists) {
             if (toDoList.getTitle().toLowerCase().contains(query.toLowerCase())) {
                 searchModel.addElement(toDoList.getTitle());
             }
@@ -148,7 +156,7 @@ public class main extends JFrame {
 
     private void saveDataToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt"))) {
-            for (ToDoList toDoList : todoLists) {
+            for (list toDoList : todoLists) {
                 writer.write("[" + toDoList.getTitle() + ", " + toDoList.getDescription() + ", " + toDoList.getTasksAsString() + "]\n");
             }
         } catch (IOException e) {

@@ -28,9 +28,11 @@ public class listGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
+
         JLabel lblNewLabel = new JLabel("ToDo List Title");
         lblNewLabel.setBounds(6, 0, 98, 16);
         getContentPane().add(lblNewLabel);
+
         txtEnterTitleHere = new JTextField();
         txtEnterTitleHere.setText("Enter Title here");
         txtEnterTitleHere.setBounds(6, 16, 130, 26);
@@ -71,7 +73,7 @@ public class listGUI extends JFrame {
             saveListToFile(title, description, tasks);
 
             // Create a new ToDoList object
-            ToDoList newList = new ToDoList(title, description);
+            list newList = new list(title, description);
             newList.addTasks(Arrays.asList(tasks.split(", ")));
 
             // Add the new list to the main GUI
