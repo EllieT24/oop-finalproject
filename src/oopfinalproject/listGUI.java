@@ -71,7 +71,7 @@ public class listGUI extends JFrame {
             saveListToFile(title, description, tasks);
 
             // Create a new ToDoList object
-            ToDoList newList = new ToDoList(title, description);
+            List newList = new List(title, description);
             newList.addTasks(Arrays.asList(tasks.split(", ")));
 
             // Add the new list to the main GUI

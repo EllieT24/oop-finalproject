@@ -14,7 +14,7 @@ public class main extends JFrame {
     private JTextField txtSearchForA;
     private JList<String> list;
     private DefaultListModel<String> listModel;
-    private ArrayList<ToDoList> todoLists; // Store the list of ToDoList objects
+    private ArrayList<List> todoLists; // Store the list of ToDoList objects
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -102,7 +102,7 @@ public class main extends JFrame {
                     String title = parts[0].trim();
                     String description = parts[1].trim();
                     String taskList = parts[2].trim();
-                    ToDoList toDoList = new ToDoList(title, description);
+                    List toDoList = new List(title, description);
                     toDoList.addTasks(Arrays.asList(taskList.split(", ")));
                     todoLists.add(toDoList);
                     listModel.addElement(toDoList.getTitle());
@@ -113,7 +113,7 @@ public class main extends JFrame {
         }
     }
 
-    public void addToDoList(ToDoList newList) {
+    public void addToDoList(List newList) {
         todoLists.add(newList);
         listModel.addElement(newList.getTitle());
         updateListDisplay(); // Refresh the JList after adding
@@ -121,7 +121,7 @@ public class main extends JFrame {
 
     private void updateListDisplay() {
         DefaultListModel<String> newListModel = new DefaultListModel<>();
-        for (ToDoList list : todoLists) {
+        for (List list : todoLists) {
             newListModel.addElement(list.getTitle());
         }
         list.setModel(newListModel); // Update the JList model
@@ -138,7 +138,7 @@ public class main extends JFrame {
 
     private void searchList(String query) {
         DefaultListModel<String> searchModel = new DefaultListModel<>();
-        for (ToDoList toDoList : todoLists) {
+        for (List toDoList : todoLists) {
             if (toDoList.getTitle().toLowerCase().contains(query.toLowerCase())) {
                 searchModel.addElement(toDoList.getTitle());
             }
@@ -148,7 +148,7 @@ public class main extends JFrame {
 
     private void saveDataToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt"))) {
-            for (ToDoList toDoList : todoLists) {
+            for (List toDoList : todoLists) {
                 writer.write("[" + toDoList.getTitle() + ", " + toDoList.getDescription() + ", " + toDoList.getTasksAsString() + "]\n");
             }
         } catch (IOException e) {
