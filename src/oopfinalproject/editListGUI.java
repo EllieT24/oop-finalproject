@@ -92,16 +92,8 @@ public class editListGUI extends JFrame {
 		
 		btnNewButton = new JButton("Update");
 		btnNewButton.setBounds(6, 237, 117, 29);
-		
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				int x = 0;
-//			}
-//		});
-
-		
 		contentPane.add(btnNewButton);
-				
+		
 		lblNewLabel_3 = new JLabel("Complete?");
 		lblNewLabel_3.setBounds(315, 95, 82, 16);
 		contentPane.add(lblNewLabel_3);

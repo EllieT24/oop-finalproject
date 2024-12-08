@@ -3,12 +3,12 @@ package oopfinalproject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class List {
-	String title;
+public class list {
+    String title;
     String description;
     List<Task> tasks;
 
-    public List(String title, String description) {
+    public list(String title, String description) {
         this.title = title;
         this.description = description;
         this.tasks = new ArrayList<>();
@@ -70,4 +70,10 @@ public class List {
         }
         return sb.toString();
     }
+<<<<<<< HEAD
 }
+
+
+=======
+}
+>>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b
