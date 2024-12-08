@@ -1,6 +1,7 @@
 package oopfinalproject;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,12 +18,16 @@ import java.awt.SystemColor;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
+import java.util.*;
+
+import java.io.*;
 
 public class main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtSearchForA;
+	static private Vector<List> list = new Vector<>();
 
 	/**
 	 * Launch the application.
@@ -73,12 +78,19 @@ public class main extends JFrame {
 		list_box.setBounds(28, 47, 267, 219);
 		contentPane.add(list_box);
 		
-		JList list = new JList();
+		JList list = new JList();		
 		list_box.add(list);
 		
 		JButton addListBtn = new JButton("Add New List");
 		addListBtn.setBounds(307, 50, 117, 29);
 		contentPane.add(addListBtn);
+		
+		addListBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listGUI lg = new listGUI();
+				lg.setVisible(true);
+			}
+		});
 		
 		JButton deleteListBtn = new JButton("Delete");
 		deleteListBtn.setBounds(307, 86, 117, 29);

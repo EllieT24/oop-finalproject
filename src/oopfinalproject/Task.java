@@ -1,6 +1,8 @@
 package oopfinalproject;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
 	static private int counter = 0;
 	private int id;
 	private String name;
