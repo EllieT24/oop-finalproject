@@ -76,4 +76,8 @@ public class list {
 
 =======
 }
+<<<<<<< HEAD
 >>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b
+=======
+>>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b
+>>>>>>> a3b1637dfd0b1099d1ee5e233a752cde4ac9f544
