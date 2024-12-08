@@ -13,7 +13,7 @@ public class main extends JFrame {
     private JTextField txtSearchForA;
     private JList<String> list;
     private DefaultListModel<String> listModel;
-    private ArrayList<list> todoLists;
+    private static ArrayList<list> todoLists;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -68,7 +68,7 @@ public class main extends JFrame {
                     int selectedIndex = list.getSelectedIndex();
                     if (selectedIndex != -1) {
                         list selectedList = todoLists.get(selectedIndex);
-                        taskGUI taskFrame = new taskGUI(selectedList);
+                        taskGUI taskFrame = new taskGUI(selectedList, todoLists, list.getSelectedIndex());
                         taskFrame.setVisible(true);
                     }
                 }
@@ -163,7 +163,7 @@ public class main extends JFrame {
         list.setModel(searchModel);
     }
 
-    private void saveDataToFile() {
+    public static void saveDataToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt"))) {
             for (list toDoList : todoLists) {
                 writer.write("[" + toDoList.getTitle() + ", " + toDoList.getDescription() + ", " + toDoList.getTasksAsString() + "]\n");
