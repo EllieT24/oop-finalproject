@@ -64,7 +64,7 @@ public class main extends JFrame {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) { // Double-click to open the TaskInfoGUI
+                if (e.getClickCount() == 2) {
                     int selectedIndex = list.getSelectedIndex();
                     if (selectedIndex != -1) {
                         list selectedList = todoLists.get(selectedIndex);
