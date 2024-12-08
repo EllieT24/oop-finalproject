@@ -1,7 +1,5 @@
 package oopfinalproject;
 
-package testing;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -20,7 +18,7 @@ public class main extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                main frame = new main();
+            	main frame = new main();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
