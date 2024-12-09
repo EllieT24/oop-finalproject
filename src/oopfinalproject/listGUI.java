@@ -15,11 +15,10 @@ public class listGUI extends JFrame {
     private JTextField txtEnterTitleHere;
     private JTextField txtEnterDescriptions;
     private JTextField txtSeperateTasksBy;
-    private main mainFrame; // Reference to main GUI frame
+    private main mainFrame; 
 
-    // Constructor accepting main frame reference
     public listGUI(main mainFrame) {
-        this.mainFrame = mainFrame; // Store the reference to main
+        this.mainFrame = mainFrame; 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
