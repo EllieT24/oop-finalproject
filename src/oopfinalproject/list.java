@@ -14,7 +14,6 @@ public class list {
         this.tasks = new ArrayList<>();
     }
 
-    // Add a task to the list
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -31,7 +30,7 @@ public class list {
     
     public void addTasks(List<String> taskNames) {
         for (String taskName : taskNames) {
-            tasks.add(new Task(taskName, false)); // Initially, tasks are not completed
+            tasks.add(new Task(taskName, false)); 
         }
     }
     public String getTasksAsString() {
@@ -41,7 +40,6 @@ public class list {
             taskListString.append(task.getTaskName()).append(", ");
         }
         
-        // Remove the last comma and space if there's at least one task
         if (taskListString.length() > 0) {
             taskListString.setLength(taskListString.length() - 2);
         }
@@ -49,7 +47,6 @@ public class list {
         return taskListString.toString();
     }
 
-    // Mark a task as completed
     public void markTaskCompleted(String taskName) {
         for (Task task : tasks) {
             if (task.getTaskName().equals(taskName)) {
@@ -57,6 +54,24 @@ public class list {
                 break;
             }
         }
+    }
+    
+    public int taskCompleteCounter(){
+    	int count = 0;
+    	for(Task t: this.tasks) {
+    		if(t.isCompleted()) {
+    			count++;
+    		}
+    	}
+    	return count;
+    }
+    
+    public int taskCounter() {
+    	int count = 0;
+    	for(Task t: this.tasks) {
+    		count++;
+    	}
+    	return count;
     }
 
     @Override
@@ -70,14 +85,4 @@ public class list {
         }
         return sb.toString();
     }
-<<<<<<< HEAD
 }
-
-
-=======
-}
-<<<<<<< HEAD
->>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b
-=======
->>>>>>> 8c4566dcada35faa1eab9d60fd7576167dcc5e7b
->>>>>>> a3b1637dfd0b1099d1ee5e233a752cde4ac9f544
