@@ -5,12 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 
 public class listGUI extends JFrame {
@@ -69,12 +65,12 @@ public class listGUI extends JFrame {
             String description = txtEnterDescriptions.getText();
             String tasks = txtSeperateTasksBy.getText();
 
-            // Save the new list data to a file
-            saveListToFile(title, description, tasks);
-
             // Create a new ToDoList object
             list newList = new list(title, description);
             newList.addTasks(Arrays.asList(tasks.split(", ")));
+
+            // Save the new list using FileManager
+            FileManager.saveListToFile(newList);
 
             // Add the new list to the main GUI
             mainFrame.addToDoList(newList);
@@ -82,14 +78,5 @@ public class listGUI extends JFrame {
             // Close the current list GUI after saving
             dispose(); // Close this window
         });
-    }
-
-    // Method to save list to a file
-    private void saveListToFile(String title, String description, String tasks) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt", true))) {
-            writer.write("[" + title + ", " + description + ", " + tasks + "]\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

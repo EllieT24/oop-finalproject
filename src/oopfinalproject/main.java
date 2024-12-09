@@ -1,12 +1,9 @@
 package oopfinalproject;
 
-package testing;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.io.*;
 import java.util.*;
 
 public class main extends JFrame {
@@ -66,7 +63,7 @@ public class main extends JFrame {
         list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) { // Double-click to open the TaskInfoGUI
+                if (e.getClickCount() == 2) { 
                     int selectedIndex = list.getSelectedIndex();
                     if (selectedIndex != -1) {
                         list selectedList = todoLists.get(selectedIndex);
@@ -95,35 +92,14 @@ public class main extends JFrame {
         contentPane.add(deleteListBtn);
         deleteListBtn.addActionListener(e -> deleteList());
 
-        loadDataFromFile();
-    }
-
-    private void loadDataFromFile() {
-        todoLists = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("todoList.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.startsWith("[") && line.endsWith("]")) {
-                    line = line.substring(1, line.length() - 1);
-                    String[] parts = line.split(", ", 3);
-                    String title = parts[0].trim();
-                    String description = parts[1].trim();
-                    String taskList = parts[2].trim();
-                    list toDoList = new list(title, description);
-                    toDoList.addTasks(Arrays.asList(taskList.split(", ")));
-                    todoLists.add(toDoList);
-                    listModel.addElement(toDoList.getTitle());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        todoLists = FileManager.loadToDoLists();
+        updateListDisplay();
     }
 
     public void addToDoList(list newList) {
         todoLists.add(newList);
         listModel.addElement(newList.getTitle());
+        FileManager.saveToDoLists(todoLists);
         updateListDisplay();
     }
 
@@ -139,8 +115,9 @@ public class main extends JFrame {
         int selectedIndex = list.getSelectedIndex();
         if (selectedIndex != -1) {
             todoLists.remove(selectedIndex);
-            listModel.remove(selectedIndex);
-            saveDataToFile();
+            FileManager.saveToDoLists(todoLists);
+            updateListDisplay();
+
         }
     }
 
@@ -152,15 +129,5 @@ public class main extends JFrame {
             }
         }
         list.setModel(searchModel);
-    }
-
-    private void saveDataToFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("todoList.txt"))) {
-            for (list toDoList : todoLists) {
-                writer.write("[" + toDoList.getTitle() + ", " + toDoList.getDescription() + ", " + toDoList.getTasksAsString() + "]\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
