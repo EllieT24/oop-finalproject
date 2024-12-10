@@ -13,6 +13,12 @@ public class main extends JFrame {
     private JList<String> list;
     private DefaultListModel<String> listModel;
     private ArrayList<list> todoLists;
+    private JLabel lblSearch;
+    private JPanel list_box;
+    private JScrollPane scrollPane;
+    private JButton addListBtn;
+    private JButton deleteListBtn;
+    
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -34,7 +40,7 @@ public class main extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblSearch = new JLabel("Search");
+        lblSearch = new JLabel("Search");
         lblSearch.setBounds(49, 6, 60, 20);
         contentPane.add(lblSearch);
 
@@ -52,7 +58,7 @@ public class main extends JFrame {
             }
         });
 
-        JPanel list_box = new JPanel();
+        list_box = new JPanel();
         list_box.setBounds(50, 47, 267, 219);
         contentPane.add(list_box);
 
@@ -74,11 +80,11 @@ public class main extends JFrame {
             }
         });
 
-        JScrollPane scrollPane = new JScrollPane(list);
+        scrollPane = new JScrollPane(list);
         list_box.setLayout(new BorderLayout());
         list_box.add(scrollPane, BorderLayout.CENTER);
 
-        JButton addListBtn = new JButton("Add New List");
+        addListBtn = new JButton("Add New List");
         addListBtn.setBounds(327, 47, 117, 29);
         contentPane.add(addListBtn);
         
@@ -89,7 +95,7 @@ public class main extends JFrame {
         });
         
         //Delete
-        JButton deleteListBtn = new JButton("Delete");
+        deleteListBtn = new JButton("Delete");
         deleteListBtn.setBounds(327, 83, 117, 29);
         contentPane.add(deleteListBtn);
         deleteListBtn.addActionListener(e -> deleteList());
@@ -97,13 +103,6 @@ public class main extends JFrame {
         todoLists = FileManager.loadToDoLists();
         updateListDisplay();
     }
-
-//    public void addToDoList(list newList) {
-//        todoLists.add(newList);
-//        listModel.addElement(newList.getTitle());
-//        FileManager.saveToDoLists(todoLists);
-//        updateListDisplay();
-//    }
 
     public void refreshList() {
         todoLists = FileManager.loadToDoLists(); 
