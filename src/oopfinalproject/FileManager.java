@@ -50,5 +50,9 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+    public static void addNewList(list newList) {
+        ArrayList<list> todoLists = loadToDoLists();
+        todoLists.add(newList);
+        saveToDoLists(todoLists);
+    }
 }
-

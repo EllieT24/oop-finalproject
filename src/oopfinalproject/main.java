@@ -12,7 +12,7 @@ public class main extends JFrame {
     private JTextField txtSearchForA;
     private JList<String> list;
     private DefaultListModel<String> listModel;
-    private static ArrayList<list> todoLists;
+    private ArrayList<list> todoLists;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -67,7 +67,7 @@ public class main extends JFrame {
                     int selectedIndex = list.getSelectedIndex();
                     if (selectedIndex != -1) {
                         list selectedList = todoLists.get(selectedIndex);
-                        taskGUI taskFrame = new taskGUI(selectedList, todoLists, list.getSelectedIndex());
+                        taskGUI taskFrame = new taskGUI(selectedList);
                         taskFrame.setVisible(true);
                     }
                 }
@@ -81,12 +81,14 @@ public class main extends JFrame {
         JButton addListBtn = new JButton("Add New List");
         addListBtn.setBounds(327, 47, 117, 29);
         contentPane.add(addListBtn);
-
+        
+        //ADDING
         addListBtn.addActionListener(e -> {
             listGUI listFrame = new listGUI(this);
             listFrame.setVisible(true);
         });
-
+        
+        //Delete
         JButton deleteListBtn = new JButton("Delete");
         deleteListBtn.setBounds(327, 83, 117, 29);
         contentPane.add(deleteListBtn);
@@ -94,16 +96,19 @@ public class main extends JFrame {
 
         todoLists = FileManager.loadToDoLists();
         updateListDisplay();
-
     }
 
-    public void addToDoList(list newList) {
-        todoLists.add(newList);
-        listModel.addElement(newList.getTitle());
-        FileManager.saveToDoLists(todoLists);
-        updateListDisplay();
-    }
+//    public void addToDoList(list newList) {
+//        todoLists.add(newList);
+//        listModel.addElement(newList.getTitle());
+//        FileManager.saveToDoLists(todoLists);
+//        updateListDisplay();
+//    }
 
+    public void refreshList() {
+        todoLists = FileManager.loadToDoLists(); 
+        updateListDisplay();                     
+    }
     private void updateListDisplay() {
         DefaultListModel<String> newListModel = new DefaultListModel<>();
         for (list list : todoLists) {

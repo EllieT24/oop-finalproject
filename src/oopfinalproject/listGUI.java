@@ -15,7 +15,7 @@ public class listGUI extends JFrame {
     private JTextField txtEnterTitleHere;
     private JTextField txtEnterDescriptions;
     private JTextField txtSeperateTasksBy;
-    private main mainFrame; 
+    private main mainFrame;
 
     public listGUI(main mainFrame) {
         this.mainFrame = mainFrame; 
@@ -58,24 +58,19 @@ public class listGUI extends JFrame {
         btnNewButton.setBounds(327, 237, 117, 29);
         getContentPane().add(btnNewButton);
 
-        // Save button action listener
+       
         btnNewButton.addActionListener(e -> {
             String title = txtEnterTitleHere.getText();
             String description = txtEnterDescriptions.getText();
             String tasks = txtSeperateTasksBy.getText();
 
-            // Create a new ToDoList object
             list newList = new list(title, description);
             newList.addTasks(Arrays.asList(tasks.split(", ")));
+            
+            FileManager.addNewList(newList);
+            mainFrame.refreshList();
 
-            // Save the new list using FileManager
-            FileManager.saveListToFile(newList);
-
-            // Add the new list to the main GUI
-            mainFrame.addToDoList(newList);
-
-            // Close the current list GUI after saving
-            dispose(); // Close this window
+            dispose();
         });
     }
 }
