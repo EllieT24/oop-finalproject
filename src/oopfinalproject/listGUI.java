@@ -16,6 +16,10 @@ public class listGUI extends JFrame {
     private JTextField txtEnterDescriptions;
     private JTextField txtSeperateTasksBy;
     private main mainFrame;
+    private JLabel lblNewLabel; 
+    private JLabel lblNewLabel_1; 
+    private JLabel lblNewLabel_2;
+    private JButton btnNewButton;
 
     public listGUI(main mainFrame) {
         this.mainFrame = mainFrame; 	
@@ -24,7 +28,7 @@ public class listGUI extends JFrame {
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("ToDo List Title");
+        lblNewLabel = new JLabel("ToDo List Title");
         lblNewLabel.setBounds(6, 0, 98, 16);
         getContentPane().add(lblNewLabel);
 
@@ -34,7 +38,7 @@ public class listGUI extends JFrame {
         getContentPane().add(txtEnterTitleHere);
         txtEnterTitleHere.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("ToDo List Description");
+        lblNewLabel_1 = new JLabel("ToDo List Description");
         lblNewLabel_1.setBounds(6, 54, 144, 16);
         getContentPane().add(lblNewLabel_1);
 
@@ -44,7 +48,7 @@ public class listGUI extends JFrame {
         getContentPane().add(txtEnterDescriptions);
         txtEnterDescriptions.setColumns(10);
 
-        JLabel lblNewLabel_2 = new JLabel("ToDo List Tasks");
+        lblNewLabel_2 = new JLabel("ToDo List Tasks");
         lblNewLabel_2.setBounds(6, 110, 107, 16);
         getContentPane().add(lblNewLabel_2);
 
@@ -54,7 +58,7 @@ public class listGUI extends JFrame {
         getContentPane().add(txtSeperateTasksBy);
         txtSeperateTasksBy.setColumns(10); 
 
-        JButton btnNewButton = new JButton("Save");  
+        btnNewButton = new JButton("Save");  
         btnNewButton.setBounds(327, 237, 117, 29);
         getContentPane().add(btnNewButton);
 
