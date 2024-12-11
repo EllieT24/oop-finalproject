@@ -1,5 +1,1 @@
-[hw, test, cs hw, chinese hw]
-[hw, test, cs hw, chinese hw]
-[hw, test, cs hw, chinese hw]
-[hw, test, cs hw, chinese hw]
-[homework, idk, 1, 2, 3]
+[food, test, cookies_true, cake_true, cereal_false, fruit salad_true]
