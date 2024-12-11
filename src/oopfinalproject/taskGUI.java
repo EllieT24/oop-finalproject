@@ -2,6 +2,9 @@ package oopfinalproject;
 
 import java.awt.EventQueue;
 import java.awt.SystemColor;
+import java.awt.event.*;
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -94,16 +97,13 @@ public class taskGUI extends JFrame {
 		searchTextField.setForeground(SystemColor.inactiveCaptionText);
 		searchTextField.setText("");
 		contentPane.add(searchTextField);
+		
 		searchTextField.setColumns(10);
 
 		
-		progressBar = new JProgressBar(0, 100);
-		progressBar.setBackground(new Color(245, 229, 248));
-		progressBar.setForeground(new Color(249, 188, 253));
+		progressBar = new JProgressBar(0, 101);
 //		progressBar.setStringPainted(true);
 		progressBar.setBounds(312, 6, 132, 20);
-		progressBar.setMinimum(0);
-		progressBar.setMaximum(100);
 		progress = 100 * (selectedList.taskCompleteCounter() / selectedList.taskCounter());
 		System.out.println(selectedList.getTasksAsString());
 		System.out.println(selectedList.taskCompleteCounter() + " / " + selectedList.taskCounter() + " = " + progress);
@@ -183,6 +183,7 @@ public class taskGUI extends JFrame {
         todoLists.set(selectedListIndex, l); 
         FileManager.saveToDoLists(todoLists); 
         updateTaskDisplay(todoLists.get(selectedListIndex));	
+        updateProgress(selectedListIndex);
 	}
 	
 	private void addTask(list selectedList, List<Task> tempList, ArrayList<list> todoLists, int selectedListIndex) {
@@ -200,6 +201,7 @@ public class taskGUI extends JFrame {
 				}
 				updateTaskDisplay(l);
 		addTaskTextField.setText("");
+		updateProgress(selectedListIndex);
 	}
 	
 	private void updateTaskDisplay(list selectedList) {
@@ -223,8 +225,16 @@ public class taskGUI extends JFrame {
 		ArrayList<list> todoLists = FileManager.loadToDoLists();
 		titleLable.setText(todoLists.get(selectedListIndex).getTitle());
 		descriptionLabel.setText(todoLists.get(selectedListIndex).getDescription());
+//		progress = 100 * (todoLists.get(selectedListIndex).taskCompleteCounter() / todoLists.get(selectedListIndex).taskCounter());
+//		progressBar.setValue((int) progress);
+		updateProgress(selectedListIndex);
+		System.out.println((int) progress);
+		updateTaskDisplay(todoLists.get(selectedListIndex));
+	}
+	
+	public void updateProgress(int selectedListIndex) {
+		ArrayList<list> todoLists = FileManager.loadToDoLists();
 		progress = 100 * (todoLists.get(selectedListIndex).taskCompleteCounter() / todoLists.get(selectedListIndex).taskCounter());
 		progressBar.setValue((int) progress);
-		updateTaskDisplay(todoLists.get(selectedListIndex));
 	}
 }
