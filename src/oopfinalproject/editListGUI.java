@@ -36,6 +36,10 @@ public class editListGUI extends JFrame {
 	private String xEmoji = "❌";
 	private JButton changeTaskBtn;
 	private JScrollPane scrollPane_1;
+	
+	private JLabel lblNewLabel; 
+	private JLabel lblNewLabel_1;
+	private JToggleButton checkBtn;
 
 
 	/**
@@ -69,7 +73,7 @@ public class editListGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ToDo List Title");
+		lblNewLabel = new JLabel("ToDo List Title");
 		lblNewLabel.setBounds(6, 6, 104, 16);
 		contentPane.add(lblNewLabel);
 		
@@ -78,7 +82,7 @@ public class editListGUI extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("ToDo List Description");
+		lblNewLabel_1 = new JLabel("ToDo List Description");
 		lblNewLabel_1.setBounds(6, 39, 220, 16);
 		contentPane.add(lblNewLabel_1);
 		
@@ -122,7 +126,7 @@ public class editListGUI extends JFrame {
 	    editTaskField.setBounds(16, 205, 194, 26); 
 	    
 	    // toggle button to check or un-check a task
-		JToggleButton checkBtn = new JToggleButton("-");
+		checkBtn = new JToggleButton("-");
 		
 		// when pressing the button
 		checkBtn.addActionListener(e -> {
