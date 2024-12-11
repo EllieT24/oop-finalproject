@@ -18,7 +18,7 @@ public class listGUI extends JFrame {
     private main mainFrame;
 
     public listGUI(main mainFrame) {
-        this.mainFrame = mainFrame; 
+        this.mainFrame = mainFrame; 	
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -52,9 +52,9 @@ public class listGUI extends JFrame {
         txtSeperateTasksBy.setText("Separate tasks by commas");
         txtSeperateTasksBy.setBounds(6, 131, 259, 26);
         getContentPane().add(txtSeperateTasksBy);
-        txtSeperateTasksBy.setColumns(10);
+        txtSeperateTasksBy.setColumns(10); 
 
-        JButton btnNewButton = new JButton("Save");
+        JButton btnNewButton = new JButton("Save");  
         btnNewButton.setBounds(327, 237, 117, 29);
         getContentPane().add(btnNewButton);
 
@@ -63,7 +63,6 @@ public class listGUI extends JFrame {
             String title = txtEnterTitleHere.getText();
             String description = txtEnterDescriptions.getText();
             String tasks = txtSeperateTasksBy.getText();
-
             list newList = new list(title, description);
             newList.addTasks(Arrays.asList(tasks.split(", ")));
             

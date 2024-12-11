@@ -1,4 +1,4 @@
-package tmp;
+package oopfinalproject;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

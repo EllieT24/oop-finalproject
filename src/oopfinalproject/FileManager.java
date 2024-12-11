@@ -11,18 +11,19 @@ public class FileManager {
     public static ArrayList<list> loadToDoLists() {
         ArrayList<list> todoLists = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-            String line;
+            String line;	
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.startsWith("[") && line.endsWith("]")) {
                     line = line.substring(1, line.length() - 1);
                     String[] parts = line.split(", ", 3);
-                    String title = parts[0].trim();
-                    String description = parts[1].trim();
-                    String taskList = parts[2].trim();
-                    list toDoList = new list(title, description);
-                    toDoList.addTasks(Arrays.asList(taskList.split(", ")));
-                    todoLists.add(toDoList);
+                    String title = parts[0].trim();		
+                    String description = parts[1].trim();	
+                    String taskList = parts[2].trim();		
+                    list toDoList = new list(title, description);	
+                    System.out.println(Arrays.asList(taskList.split(", ")));
+                    toDoList.addTasks(Arrays.asList(taskList.split(", ")));	
+                    todoLists.add(toDoList);	
                 }
             }
         } catch (IOException e) {
